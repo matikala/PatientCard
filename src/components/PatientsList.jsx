@@ -19,23 +19,26 @@ const PatientsList = (props) => {
     }, [])
 
     return (
-        <div>
-            <InputBase
-                placeholder="Search patient by surname..."
-                onChange={event => setSearch(event.target.value)} />
+        <div style={{ margin: '2%' }}>
+            <div style={{marginBottom: '2%'}}>
+                <InputBase
+                    placeholder="Search patient by surname..."
+                    onChange={event => setSearch(event.target.value)}
+                    style={{ width: '50%'}} />
+            </div>
             {
                 patients.filter(patient => patient.name[0].family.toLowerCase().match(search.toLowerCase())).map((patient) => {
                     return (
-                        <Card>
-                            <CardContent>
-                                <Typography variant="body1" paragraph>
-                                    Name: {patient.name[0].given[0]} {patient.name[0].family}
+                        <Card style={{background: '#b3e5fc', margin: '2%'}}>
+                            <CardContent style={{ float: 'left'}}>
+                                <Typography variant="h6" paragraph>
+                                    {patient.name[0].given[0]} {patient.name[0].family}
                                 </Typography>
                                 <Typography variant="body1" paragraph>
                                     Birth date: {patient.birthDate}
                                 </Typography>
                             </CardContent>
-                            <CardActions>
+                            <CardActions style={{float: 'right', paddingRight: '10%'}}>
                                 <Link to={`/patients/${patient.id}`}>
                                     <Button size="small">Show details</Button>
                                 </Link>
